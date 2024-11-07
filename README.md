@@ -6,7 +6,7 @@ RAG 系列教程源码仓库
 1. 安装[miniconda](https://docs.anaconda.com/miniconda/miniconda-install/)
 2. 创建虚拟环境  
     ```
-    $ conda create -n rag python=3.17
+    $ conda create -n rag python=3.12
     ```
     我使用的是 python==3.12.7
 3. 激活虚拟环境  
