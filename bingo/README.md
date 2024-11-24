@@ -1,1 +1,0 @@
-# This project is inspired by [Kotaemon](https://github.com/Cinnamon/kotaemon). Let's go!
