@@ -1,6 +1,11 @@
 # RAG
 RAG 系列教程源码仓库
 
+关注我的微信公众号获取最新推送
+
+![wechat_qrcode](https://github.com/realyinchen/RAG/blob/main/data/wechat_qrcode.jpg)
+
+
 ## 运行环境
 
 1. 安装[miniconda](https://docs.anaconda.com/miniconda/miniconda-install/)
