@@ -1,11 +1,11 @@
 # RAG
 RAG 系列教程源码仓库
 
-![rag_landscape](https://github.com/realyinchen/RAG/blob/main/data/rag_landscape.png)
+![rag_landscape](https://github.com/realyinchen/RAG/blob/main/imgs/rag_landscape.png)
 
 关注我的微信公众号获取最新推送
 
-![wechat_qrcode](https://github.com/realyinchen/RAG/blob/main/data/wechat_qrcode.jpg)
+![wechat_qrcode](https://github.com/realyinchen/RAG/blob/main/imgs/wechat_qrcode.jpg)
 
 
 ## 运行环境
