@@ -1,5 +1,6 @@
 import os
 import textwrap
+from dotenv import load_dotenv
 
 from langchain_community.document_loaders import PyMuPDFLoader
 from langchain_huggingface import HuggingFaceEmbeddings
@@ -10,8 +11,20 @@ from qdrant_client.http.models import Distance, VectorParams
 from uuid import uuid4
 
 
-def get_local_embedding_model() -> HuggingFaceEmbeddings:
-    model_name = os.environ.get("EMBEDDING_MODEL")
+load_dotenv()
+
+def get_local_embedding_model(model_name: str | None = None) -> HuggingFaceEmbeddings:
+    """
+    Get embedding model from local path or huggingface.
+
+    Args:
+        model_name: embedding model file path or huggingface model id.
+
+    Returns:
+       HuggingFace embedding model.
+    """
+    if not model_name:
+        model_name = os.environ.get("EMBEDDING_MODEL")
     model_kwargs = {"device": "cpu"}
     encode_kwargs = {"normalize_embeddings": True}
     return HuggingFaceEmbeddings(
@@ -99,7 +112,7 @@ def encode_pdf(
     if not client.collection_exists(collection_name=collection_name):
         client.create_collection(
             collection_name=collection_name,
-            vectors_config=VectorParams(size=1024, distance=Distance.COSINE),
+            vectors_config=VectorParams(size=size, distance=distance),
         )
 
     vector_store = QdrantVectorStore(
