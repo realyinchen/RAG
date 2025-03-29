@@ -13,6 +13,7 @@ from uuid import uuid4
 
 load_dotenv()
 
+
 def get_local_embedding_model(model_name: str | None = None) -> HuggingFaceEmbeddings:
     """
     Get embedding model from local path or huggingface.
@@ -66,13 +67,13 @@ def text_wrap(text, width=120):
 
 def encode_pdf(
     pdf_path,
-    chunk_size=1000,
-    chunk_overlap=200,
-    host="localhost",
-    port=6333,
-    collection_name="rag101",
-    size=1024,
-    distance=Distance.COSINE,
+    chunk_size: int = 1000,
+    chunk_overlap: int = 200,
+    host: str = "localhost",
+    port: int = 6333,
+    collection_name: str = "rag101",
+    size: int = 1024,
+    distance: str = Distance.COSINE,
 ):
     """
     Encodes a PDF book into a vector store using local embeddings.
@@ -125,3 +126,33 @@ def encode_pdf(
     vector_store.add_documents(documents=cleaned_texts, ids=ids)
 
     return vector_store
+
+
+def get_vector_store(
+    embedding_model: HuggingFaceEmbeddings,
+    host: str = "localhost",
+    port: int = 6333,
+    collection_name: str = "rag101",
+):
+    client = QdrantClient(host=host, port=port)
+
+    return QdrantVectorStore(
+        client=client,
+        collection_name=collection_name,
+        embedding=embedding_model,
+    )
+
+
+def show_context(context):
+    """
+    Display the contents of the provided context list.
+
+    Args:
+        context (list): A list of context items to be displayed.
+
+    Prints each context item in the list with a heading indicating its position.
+    """
+    for i, c in enumerate(context):
+        print(f"Context {i + 1}:")
+        print(c)
+        print("\n")
